@@ -8,11 +8,11 @@ window.addEventListener("DOMContentLoaded", () => {
   let message = "";
 
   if (isMorning) {
-    message = "Good morning! Welcome to my page!";
+    message = "Good morning!";
   } else if (isAfternoon) {
-    message = "Good afternoon! Hope you're having a great day!";
+    message = "Good afternoon!";
   } else if (isEvening) {
-    message = "Good evening! Thanks for stopping by!";
+    message = "Good evening!";
   }
 
   const welcomeDiv = document.getElementById("welcome");
