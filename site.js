@@ -17,4 +17,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const welcomeDiv = document.getElementById("welcome");
   welcomeDiv.textContent = message;
+
+  localStorage.setItem("It's a secret to everybody.", "the cake is a lie, easy portal reference, give me the brownie points");
 });
