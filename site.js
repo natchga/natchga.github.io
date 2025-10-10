@@ -20,6 +20,36 @@ window.addEventListener("DOMContentLoaded", () => {
 
   localStorage.setItem("It's a secret to everybody.", "the cake is a lie, easy portal reference, give me the brownie points");
 
+  // To Do List below
+  const todoList = document.querySelector(".todo-list");
+  const input = document.querySelector("#new-todo");
+  const addButton = document.querySelector("#add-todo");
+
+  let todos = JSON.parse(localStorage.getItem("todo-list")) || [];
+
+  const renderTodos = () => {
+    todoList.innerHTML = "";
+    todos.forEach(todo => {
+      const li = document.createElement("li");
+      li.textContent = todo.text;
+      todoList.append(li);
+    });
+  };
+
+  renderTodos();
+
+  addButton.addEventListener("click", () => {
+    const text = input.value.trim();
+    if (!text) return;
+
+    todos.push({ text, completed: false });
+    localStorage.setItem("todo-list", JSON.stringify(todos));
+
+    input.value = "";
+    renderTodos();
+  });
+
+
 //Carousel below
   const urls = [
     'https://images.pexels.com/photos/1454360/pexels-photo-1454360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
