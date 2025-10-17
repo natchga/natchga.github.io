@@ -96,16 +96,16 @@ const getRandomPokemon = async () => {
     const randomId = Math.floor(Math.random() * 150) + 1;
     const url = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
     
-    const response = await fetch(url); // url of the image from the 'front_default' property
-    const pokemon = await response.json(); // name of the pokemon
+    const response = await fetch(url);
+    const pokemon = await response.json(); 
     return pokemon;
 };
 
 const renderPokemon = (pokemon) => {
     const container = document.getElementById('pokemon');
     const img = document.createElement('img');
-    img.src = pokemon.sprites.front_default;
-    img.alt = pokemon.name;
+    img.src = pokemon.sprites.front_default; // url of the image from the 'front_default' property
+    img.alt = pokemon.name; // name of the pokemon
     container.append(img);
 };
 
