@@ -92,9 +92,14 @@ window.addEventListener("DOMContentLoaded", () => {
   }, 5000);
 
 // Pokemon assignment code below
+const delaySeconds = (seconds) => {
+    return new Promise(resolve => setTimeout(resolve, seconds * 1000));
+};
+
 const getRandomPokemon = async () => {
     const randomId = Math.floor(Math.random() * 150) + 1;
     const url = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
+    
     const response = await fetch(url);
     const pokemon = await response.json();
     return pokemon;
@@ -102,7 +107,6 @@ const getRandomPokemon = async () => {
 
 const renderPokemon = (pokemon) => {
     const container = document.getElementById('pokemon');
-
     container.innerHTML = '<h2>Random Pokemon</h2>';
     
     const img = document.createElement('img');
@@ -121,8 +125,8 @@ const renderPokemon = (pokemon) => {
     
     container.append(img, name, details);
 };
-
-getRandomPokemon().then(pokemon => {
+(async () => {
+    const pokemon = await getRandomPokemon();
     renderPokemon(pokemon);
-});
+})();
 });
