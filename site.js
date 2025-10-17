@@ -90,4 +90,39 @@ window.addEventListener("DOMContentLoaded", () => {
     currentImage = (currentImage + 1) % urls.length;
     showImages();
   }, 5000);
+
+// Pokemon assignment code below
+const getRandomPokemon = async () => {
+    const randomId = Math.floor(Math.random() * 150) + 1;
+    const url = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
+    const response = await fetch(url);
+    const pokemon = await response.json();
+    return pokemon;
+};
+
+const renderPokemon = (pokemon) => {
+    const container = document.getElementById('pokemon');
+
+    container.innerHTML = '<h2>Random Pokemon</h2>';
+    
+    const img = document.createElement('img');
+    img.src = pokemon.sprites.front_default;
+    img.alt = pokemon.name;
+    img.style.width = '150px';
+    img.style.height = '150px';
+    
+    const name = document.createElement('p');
+    name.textContent = `#${pokemon.id} ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}`;
+    name.style.fontWeight = 'bold';
+    name.style.marginTop = '10px';
+    
+    const details = document.createElement('p');
+    details.textContent = `Height: ${pokemon.height / 10}m, Weight: ${pokemon.weight / 10}kg`;
+    
+    container.append(img, name, details);
+};
+
+getRandomPokemon().then(pokemon => {
+    renderPokemon(pokemon);
+});
 });
